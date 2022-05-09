@@ -18,6 +18,24 @@
       #lightGroup {
         fill: var(--light-color);
       }
+      #dark1,
+      #light1,
+      #dark2 {
+        transition: all 1s ease;
+      }
+      #dark2 {
+        transform: translateX(-100%);
+      }
+      svg:hover #light1 {
+        transform: translateX(20%);
+      }
+      svg:hover #dark1 {
+        transform: translateX(40%);
+        opacity: 0;
+      }
+      svg:hover #dark2 {
+        transform: translateX(0%);
+      }
     </style>
   </head>
   <body>
@@ -55,5 +73,18 @@
         </clipPath>
       </defs>
     </svg>
+
+    <script>
+      const svg = document.getElementById('triangles');
+
+      svg.onclick = (e) => {
+        const colors = ['red', 'blue', 'green', 'orange', 'pink', 'purple'];
+        const rando = () => colors[Math.floor(Math.random() * colors.length)];
+        document.documentElement.style.cssText = `
+        --dark-color: ${rando()};
+        --light-color: ${rando()};
+        `;
+      };
+    </script>
   </body>
 </html>
